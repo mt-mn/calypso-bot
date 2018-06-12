@@ -121,8 +121,8 @@ if (!is_null($events['events'])) {
 						 $celsius = ceil($temp - 273.15);
 						 $text ="Bangkok\nTemp : ";
 						 $text .=$celsius."°C\n";
-						 $text .="Cloud : ".$cloud"%\n";
-						 $text .="Windspeed : ".$windspeed" m/s";
+						 $text .="Cloud : ".$cloud."%\n";
+						 $text .="Windspeed : ".$windspeed." m/s";
 						 
 						break;
 					case "Room":
