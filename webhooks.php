@@ -116,7 +116,7 @@ if (!is_null($events['events'])) {
 						$weatherstatus=$weatherlist->main;
 						  }
 						 $temp=$f_get_list->main->temp;
-						 $cloud=$f_get_list->cloud->all;
+						 $cloud=$f_get_list->clouds->all;
 						 $windspeed=$f_get_list->wind->speed;
 						 $celsius = ceil($temp - 273.15);
 						 $text ="Bangkok Temp : ";
