@@ -116,7 +116,8 @@ if (!is_null($events['events'])) {
 						 $temp=$f_get_list->main->temp;
 						 $windspeed=$f_get_list->wind->speed;
 						 $celsius = ceil($temp - 273.15);
-						 $text = $celsius;
+						 $text .="Bangkok Temp :";
+						 $text .=$celsius;
 						 
 						break;
 					case "Room":
