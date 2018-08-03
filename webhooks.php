@@ -120,7 +120,6 @@ if (!is_null($events['events'])) {
 						 $text .=$celsius."°C\n";
 						 $text .="Cloud : ".$cloud."%\n";
 						 $text .="Windspeed : ".$windspeed." m/s";
-						 $text = $celsius;
 						 
 						break;
 					case "Room":
