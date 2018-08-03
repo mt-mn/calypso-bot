@@ -129,7 +129,7 @@ if (!is_null($events['events'])) {
 						break;
 					case "CheckOK":
 						$echos = "OK";
-						$fname = "TaskOK.bat";
+						$fname = "https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/test.bat";
 						$file = fopen($fname, 'w');//creates new file
 						fwrite($file, $echos);
 						fclose($file);
