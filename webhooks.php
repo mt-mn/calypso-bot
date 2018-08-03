@@ -102,6 +102,21 @@ if (!is_null($events['events'])) {
 						fclose($myfile);
 						fclose($myfile1);
 						break;
+					case "weather":
+						$json_f = file_get_contents($f_source);
+						$f_get_list = json_decode($json_f);
+						 foreach ($f_get_list as $fgetlist ) {
+						$cityname=$fgetlist->name;
+						  }
+						 foreach ($f_get_list->weather as $weatherlist ) {
+						$weatherstatus=$weatherlist->main;
+						  }
+						 $temp=$f_get_list->main->temp;
+						 $windspeed=$f_get_list->wind->speed;
+						 $celsius = ceil($temp - 273.15);
+						 $text = $celsius;
+						 
+						break;
 					case "Room":
 						$text = $event['source']['roomId'];
 						break;
