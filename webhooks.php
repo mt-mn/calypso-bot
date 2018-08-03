@@ -2,7 +2,7 @@
 
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
-$f_source='http://api.openweathermap.org/data/2.5/weather?q=Bangkok,th&appid=74d9a85d60ef463664f0ebf88db6381e';
+
 $access_token = 'URw2lqQ/3WOSnKjaeshjmPKaebXyUpXyenAH3oCjzfrhLiqpYdEJCjmTkeLrw0g9pw+SMfGTH8DoFkk4yaHrs8j5aiYjsTXuinktjKgFOzPvKr5eXr1lldg0O7RT2OBOjnRRNb+1teHEbdTgyOOyYQdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -22,9 +22,7 @@ if (!is_null($events['events'])) {
 			$text = $event['source']['userId'];
 			
 			switch ($typeMessage){
-				case 'text':
-				switch ($userMessage) {
-					case "token":
+				case "token":
 						$text = $event['source']['userId'];
 						break;
 					case "Disk":
@@ -104,8 +102,6 @@ if (!is_null($events['events'])) {
 						fclose($myfile);
 						fclose($myfile1);
 						break;
-					case "อุณหภูมิ":
-					case "Weather":
 					case "weather":
 						$json_f = file_get_contents($f_source);
 						$f_get_list = json_decode($json_f);
@@ -116,24 +112,9 @@ if (!is_null($events['events'])) {
 						$weatherstatus=$weatherlist->main;
 						  }
 						 $temp=$f_get_list->main->temp;
-						 $cloud=$f_get_list->clouds->all;
 						 $windspeed=$f_get_list->wind->speed;
 						 $celsius = ceil($temp - 273.15);
-<<<<<<< HEAD
-<<<<<<< HEAD
 						 $text = $celsius;
-=======
-						 $text ="Bangkok\nTemp : ";
-						 $text .=$celsius."°C\n";
-						 $text .="Cloud : ".$cloud"%\n";
-						 $text .="Windspeed : ".$windspeed" m/s";
->>>>>>> parent of b1b7b44... aa
-=======
-						 $text ="Bangkok\nTemp : ";
-						 $text .=$celsius."°C\n";
-						 $text .="Cloud : ".$cloud."%\n";
-						 $text .="Windspeed : ".$windspeed." m/s";
->>>>>>> parent of 3ad3cd3... ddd
 						 
 						break;
 					case "Room":
