@@ -22,6 +22,8 @@ if (!is_null($events['events'])) {
 			$text = $event['source']['userId'];
 			
 			switch ($typeMessage){
+				case 'text':
+				switch ($userMessage) {
 				case "token":
 						$text = $event['source']['userId'];
 						break;
@@ -250,6 +252,10 @@ if (!is_null($events['events'])) {
 						}
 						break;                                      
 				}
+				default:
+				$textReplyMessage = json_encode($events);
+				break;  
+			}
 			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
