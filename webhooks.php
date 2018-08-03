@@ -116,7 +116,14 @@ if (!is_null($events['events'])) {
 						 $temp=$f_get_list->main->temp;
 						 $windspeed=$f_get_list->wind->speed;
 						 $celsius = ceil($temp - 273.15);
+<<<<<<< HEAD
 						 $text = $celsius;
+=======
+						 $text ="Bangkok\nTemp : ";
+						 $text .=$celsius."°C\n";
+						 $text .="Cloud : ".$cloud"%\n";
+						 $text .="Windspeed : ".$windspeed" m/s";
+>>>>>>> parent of b1b7b44... aa
 						 
 						break;
 					case "Room":
