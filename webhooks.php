@@ -234,9 +234,7 @@ if (!is_null($events['events'])) {
 							$text = "เหงาหรอ วางถุงกาวลงซะ";
 						}
 						break;                                      
-			default:
-				$textReplyMessage = json_encode($events);
-				break;  
+			 
 			}
 			// Get replyToken
 			$replyToken = $event['replyToken'];
