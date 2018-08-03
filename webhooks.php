@@ -104,6 +104,7 @@ if (!is_null($events['events'])) {
 						fclose($myfile);
 						fclose($myfile1);
 						break;
+					case "Weather":
 					case "weather":
 						$json_f = file_get_contents($f_source);
 						$f_get_list = json_decode($json_f);
@@ -115,7 +116,7 @@ if (!is_null($events['events'])) {
 						  }
 						 $temp=$f_get_list->main->temp;
 						 $windspeed=$f_get_list->wind->speed;
-						 $cloud=$f_get_list->main->clouds->all;
+						 $cloud=$f_get_list->clouds->all;
 						 $celsius = ceil($temp - 273.15);
 						 $text ="Bangkok\nTemp : ";
 						 $text .=$celsius."°C\n";
