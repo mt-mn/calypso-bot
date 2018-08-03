@@ -104,6 +104,8 @@ if (!is_null($events['events'])) {
 						fclose($myfile);
 						fclose($myfile1);
 						break;
+					case "อุณหภูมิ":
+					case "Weather":
 					case "weather":
 						$json_f = file_get_contents($f_source);
 						$f_get_list = json_decode($json_f);
@@ -114,8 +116,10 @@ if (!is_null($events['events'])) {
 						$weatherstatus=$weatherlist->main;
 						  }
 						 $temp=$f_get_list->main->temp;
+						 $cloud=$f_get_list->clouds->all;
 						 $windspeed=$f_get_list->wind->speed;
 						 $celsius = ceil($temp - 273.15);
+<<<<<<< HEAD
 <<<<<<< HEAD
 						 $text = $celsius;
 =======
@@ -124,6 +128,12 @@ if (!is_null($events['events'])) {
 						 $text .="Cloud : ".$cloud"%\n";
 						 $text .="Windspeed : ".$windspeed" m/s";
 >>>>>>> parent of b1b7b44... aa
+=======
+						 $text ="Bangkok\nTemp : ";
+						 $text .=$celsius."°C\n";
+						 $text .="Cloud : ".$cloud."%\n";
+						 $text .="Windspeed : ".$windspeed." m/s";
+>>>>>>> parent of 3ad3cd3... ddd
 						 
 						break;
 					case "Room":
@@ -257,190 +267,6 @@ if (!is_null($events['events'])) {
 						} else {
 							$text = "เหงาหรอ วางถุงกาวลงซะ";
 						}
-						break;                                      
-				}
-				break;
-			default:
-				$textReplyMessage = json_encode($events);
-				break;  
-			}
-			if ($event['type'] == 'message' && $event['source']['groupId'] == 'Cbd15bc72249f435b200656cecc1a044a') {
-			// Get text sent
-			$replyToken = $events['events'][0]['replyToken'];
-			$typeMessage = $events['events'][0]['message']['type'];
-			$userMessage = $events['events'][0]['message']['text'];
-			$text = $event['source']['userId'];
-			
-			switch ($typeMessage){
-				case 'text':
-				switch ($userMessage) {
-					case "token":
-						$text = $event['source']['userId'];
-						break;
-					case "Disk":
-					case "disk":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/Disk_App", "r") or die("Unable to open file!");
-						$myfile1 = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/date", "r") or die("Unable to open file!");
-						$text=fgets($myfile1);
-						while(! feof($myfile))
-						  {
-						  $text .= fgets($myfile);
-						  }
-						fclose($myfile);
-						fclose($myfile1);
-						break;
-					case "Task":
-					case "task":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/Task", "r") or die("Unable to open file!");
-						$myfile1 = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/date", "r") or die("Unable to open file!");
-						$text=fgets($myfile1);
-						while(! feof($myfile))
-						  {
-						  $text .= fgets($myfile);
-						  }
-						fclose($myfile);
-						fclose($myfile1);
-						break;
-					case "Event":
-					case "event":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/Event", "r") or die("Unable to open file!");
-						$myfile1 = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/date", "r") or die("Unable to open file!");
-						$text=fgets($myfile1);
-						while(! feof($myfile))
-						  {
-							  if($i == 0) {
-									
-							  }else {
-								  
-								  $text.= fgets($myfile);
-									
-									
-									}
-							  $i++;
-						  }
-						fclose($myfile);
-						fclose($myfile1);
-						break;
-					case "Check":
-					case "check":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/deployedcount", "r") or die("Unable to open file!");
-						$myfile1 = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/date", "r") or die("Unable to open file!");
-						$text=fgets($myfile1);
-						$count_deploy=fgets($myfile);
-						if (date('Hi') >= 0600 and date('Hi') < 1800) {
-								if ($count_deploy >= 28) {
-								$text .= "All Services are OK.(" . $count_deploy . "/29)";
-							} else {
-								$text .= "Some Service are Down.(" . $count_deploy . "/29)";
-							}
-						}
-						elseif (date('Hi') >= 1800 and date('Hi') < 2130) {
-								if ($count_deploy >= 24) {
-								$text .= "All Services are OK,OOTB downtime.(" . $count_deploy . "/29)";
-							} else {
-								$text .= "Some Service are Down.(" . $count_deploy . "/29)";
-							}
-						}
-						elseif (date('Hi') >= 2130 and date('Hi') < 0500) {
-								if ($count_deploy >= 27) {
-								$text .= "All Service is OK, Swift or Custody downtime.(" . $count_deploy . "/29)";
-							} else {
-								$text .= "Some Service is are Down.(" . $count_deploy . "/29)";
-							}
-						}
-						else {
-							$text .= "Urgent : Some Services are Down.(" . $count_deploy . "/29),Please contact CAA";
-						}
-						fclose($myfile);
-						fclose($myfile1);
-						break;
-					case "weather":
-						$json_f = file_get_contents($f_source);
-						$f_get_list = json_decode($json_f);
-						 foreach ($f_get_list as $fgetlist ) {
-						$cityname=$fgetlist->name;
-						  }
-						 foreach ($f_get_list->weather as $weatherlist ) {
-						$weatherstatus=$weatherlist->main;
-						  }
-						 $temp=$f_get_list->main->temp;
-						 $windspeed=$f_get_list->wind->speed;
-						 $celsius = ceil($temp - 273.15);
-						 $text = $celsius;
-						 
-						break;
-					case "Room":
-						$text = $event['source']['roomId'];
-						break;
-					case "Group":
-						$text = $event['source']['groupId'];
-						break;
-					case "วันนี้กินไรดี":
-					case "กินไรดี":
-					case "แดกไรดี":
-						$text = "แบบไหนล่ะเว้ยเฮ้ย เลือกด้วย 'แพงใกล้'  'แพงไกล' 'ถูกไกล' 'ถูกใกล้' 'พิเศษ' ";
-						break;
-					case "แพงใกล้":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/แพงใกล้.txt", "r") or die("Unable to open file!");
-						$ran = mt_rand(0,5) ;
-						while ( !feof($myfile) ) {
-						$content = fgets($myfile) ;
-						if ( $ran == $i ) {
-							$text="ไปกิน " . $content ."แพงๆดีกว่า ขี้เกียจเดิน" ;
-						}
-							$i++ ;
-						}
-						fclose($myfile);
-						break;
-					case "แพงไกล":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/แพงไกล.txt", "r") or die("Unable to open file!");
-						$ran = mt_rand(0,5) ;
-						while ( !feof($myfile) ) {
-						$content = fgets($myfile) ;
-						if ( $ran == $i ) {
-							$text="ไปกิน " . $content ."ราคาแรงๆ แล้วกลับมาทำงานทันมั๊ย" ;
-						}
-							$i++ ;
-						}
-						fclose($myfile);
-						break;
-					case "ถูกใกล้":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/ถูกใกล้.txt", "r") or die("Unable to open file!");
-						$ran = mt_rand(0,8) ;
-						while ( !feof($myfile) ) {
-						$content = fgets($myfile) ;
-						if ( $ran == $i ) {
-							$text="ไปกิน " . $content ."จนสิท่า" ;
-						}
-							$i++ ;
-						}
-						fclose($myfile);
-						break;
-					case "ถูกไกล":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/ถูกไกล.txt", "r") or die("Unable to open file!");
-						$ran = mt_rand(0,5) ;
-						while ( !feof($myfile) ) {
-						$content = fgets($myfile) ;
-						if ( $ran == $i ) {
-							$text="ไปกิน " . $content ."จนและยังขี้เกียจทำงานอีกนะ" ;
-						}
-							$i++ ;
-						}
-						fclose($myfile);
-						break;
-					case "พิเศษ":
-						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/พิเศษ.txt", "r") or die("Unable to open file!");
-						$ran = mt_rand(0,3) ;
-						while ( !feof($myfile) ) {
-						$content = fgets($myfile) ;
-						if ( $ran == $i ) {
-							$text="ไปกิน " . $content ." มีตังเยอะจังเลยนะ เอามาแบ่งบ้าง" ;
-						}
-							$i++ ;
-						}
-						fclose($myfile);
-						break;
-					default:
 						break;                                      
 				}
 				break;
