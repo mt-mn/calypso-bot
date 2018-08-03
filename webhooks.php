@@ -2,7 +2,7 @@
 
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
-
+$f_source='http://api.openweathermap.org/data/2.5/weather?q=Bangkok,th&appid=74d9a85d60ef463664f0ebf88db6381e';
 $access_token = 'URw2lqQ/3WOSnKjaeshjmPKaebXyUpXyenAH3oCjzfrhLiqpYdEJCjmTkeLrw0g9pw+SMfGTH8DoFkk4yaHrs8j5aiYjsTXuinktjKgFOzPvKr5eXr1lldg0O7RT2OBOjnRRNb+1teHEbdTgyOOyYQdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -25,8 +25,8 @@ if (!is_null($events['events'])) {
 				case "token":
 						$text = $event['source']['userId'];
 						break;
-				case "Disk":
-				case "disk":
+					case "Disk":
+					case "disk":
 						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/Disk_App", "r") or die("Unable to open file!");
 						$myfile1 = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/date", "r") or die("Unable to open file!");
 						$text=fgets($myfile1);
@@ -101,6 +101,21 @@ if (!is_null($events['events'])) {
 						}
 						fclose($myfile);
 						fclose($myfile1);
+						break;
+					case "weather":
+						$json_f = file_get_contents($f_source);
+						$f_get_list = json_decode($json_f);
+						 foreach ($f_get_list as $fgetlist ) {
+						$cityname=$fgetlist->name;
+						  }
+						 foreach ($f_get_list->weather as $weatherlist ) {
+						$weatherstatus=$weatherlist->main;
+						  }
+						 $temp=$f_get_list->main->temp;
+						 $windspeed=$f_get_list->wind->speed;
+						 $celsius = ceil($temp - 273.15);
+						 $text = $celsius;
+						 
 						break;
 					case "Room":
 						$text = $event['source']['roomId'];
@@ -234,7 +249,8 @@ if (!is_null($events['events'])) {
 							$text = "เหงาหรอ วางถุงกาวลงซะ";
 						}
 						break;                                      
-			 
+				}
+				break;
 			}
 			// Get replyToken
 			$replyToken = $event['replyToken'];
