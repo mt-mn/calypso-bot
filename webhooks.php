@@ -250,8 +250,7 @@ if (!is_null($events['events'])) {
 						}
 						break;                                      
 				}
-				break;
-			}
+			
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
