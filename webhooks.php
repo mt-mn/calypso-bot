@@ -128,10 +128,10 @@ if (!is_null($events['events'])) {
 						$text = $event['source']['roomId'];
 						break;
 					case "CheckOK"
-						$data = "echo OK";
+						$echos = "OK";
 						$fname = "TaskOK.bat";
 						$file = fopen($fname, 'w');//creates new file
-						fwrite($file, $data);
+						fwrite($file, $echos);
 						fclose($file);
 						$text = "OK ,Thank you.";
 					case "Group":
