@@ -127,7 +127,7 @@ if (!is_null($events['events'])) {
 					case "Room":
 						$text = $event['source']['roomId'];
 						break;
-					case "CheckOK"
+					case "CheckOK":
 						$echos = "OK";
 						$fname = "TaskOK.bat";
 						$file = fopen($fname, 'w');//creates new file
