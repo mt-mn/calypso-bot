@@ -127,6 +127,13 @@ if (!is_null($events['events'])) {
 					case "Room":
 						$text = $event['source']['roomId'];
 						break;
+					case "CheckOK"
+						$data = "echo OK";
+						$fname = "TaskOK.bat";
+						$file = fopen($fname, 'w');//creates new file
+						fwrite($file, $data);
+						fclose($file);
+						$text = "OK ,Thank you.";
 					case "Group":
 						$text = $event['source']['groupId'];
 						break;
