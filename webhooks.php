@@ -25,8 +25,8 @@ if (!is_null($events['events'])) {
 				case "token":
 						$text = $event['source']['userId'];
 						break;
-					case "Disk":
-					case "disk":
+				case "Disk":
+				case "disk":
 						$myfile = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/Disk_App", "r") or die("Unable to open file!");
 						$myfile1 = fopen("https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/date", "r") or die("Unable to open file!");
 						$text=fgets($myfile1);
@@ -234,8 +234,6 @@ if (!is_null($events['events'])) {
 							$text = "เหงาหรอ วางถุงกาวลงซะ";
 						}
 						break;                                      
-				}
-				break;
 			default:
 				$textReplyMessage = json_encode($events);
 				break;  
