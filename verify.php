@@ -13,7 +13,6 @@
   $result = pg_query($link, "SELECT status from public.check_ok where check_result = 'OPT';");
   while ($row = pg_fetch_row($result)) {
 	echo "$row[0]";
-	echo "<br />\n";
 }
 	pg_close($link);
 ?>
