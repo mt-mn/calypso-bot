@@ -6,10 +6,10 @@
   $result = pg_query($link, "SELECT status from public.check_ok where check_result = 'OPT';");
   if ($_GET["check"] = "OK") {
 	  $put = pg_query($link, "UPDATE public.check_ok SET status = 'OK' where check_result = 'OPT';");
-  }elseif ($_GET["check"] = "FAILED") {
-	  $put = pg_query($link, "UPDATE public.check_ok SET status = 'FAILED' where check_result = 'OPT';");
   }
-  $numrows = pg_numrows($result);
+  if ($_GET["check"] = "FAIL") {
+	  $put = pg_query($link, "UPDATE public.check_ok SET status = 'FAIL' where check_result = 'OPT';");
+  }
   while ($row = pg_fetch_row($result)) {
 	echo "$row[0]";
 	echo "<br />\n";
