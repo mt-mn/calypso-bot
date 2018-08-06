@@ -4,6 +4,7 @@
 <?php
   $link = pg_Connect("host=ec2-23-23-216-40.compute-1.amazonaws.com port=5432 dbname=deko3n85j4ri1q user=fiaknamxlunoil password=d100670ed9d12fe4e7607538cdc26be62bb487aa71db488d59bc045a3169e9b1");
   $check_status=$_GET["check"];
+  echo  $check_status;
   if (!$check_status) {
 	  echo "OK : $check_status";
 	  if ($check_status == "OK") {
