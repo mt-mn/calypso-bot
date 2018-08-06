@@ -128,11 +128,17 @@ if (!is_null($events['events'])) {
 						$text = $event['source']['roomId'];
 						break;
 					case "CheckOK":
-						$echos = "OK";
-						$fname = "https://07jovtb5la5gcima2zspnq-on.drv.tw/Monitor/test.bat";
-						$file = fopen($fname, 'w');//creates new file
-						fwrite($file, $echos);
-						fclose($file);
+						$ch = curl_init();
+
+						// set URL and other appropriate options
+						curl_setopt($ch, CURLOPT_URL, "https://tranquil-ravine-32330.herokuapp.com/verify.php?check=OK");
+						curl_setopt($ch, CURLOPT_HEADER, 0);
+
+						// grab URL and pass it to the browser
+						curl_exec($ch);
+
+						// close cURL resource, and free up system resources
+						curl_close($ch);
 						$text = "OK ,Thank you.";
 					case "Group":
 						$text = $event['source']['groupId'];
