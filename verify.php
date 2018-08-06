@@ -6,9 +6,11 @@
   if (!$_GET["check"]) {
 	  if ($_GET["check"] = "OK") {
 		  $put = pg_exec($link, "UPDATE public.check_ok SET status = 'OK' where check_result = 'OPT';");
+			echo "OK $put";
 	  }
-	  if ($_GET["check"] = "FAIL") {
+	  elseif ($_GET["check"] = "FAIL") {
 		  $put = pg_exec($link, "UPDATE public.check_ok SET status = 'FAIL' where check_result = 'OPT';");
+		  echo "FAIL $put";
 	  }
 	  pg_query("COMMIT");
   }
