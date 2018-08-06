@@ -128,6 +128,7 @@ if (!is_null($events['events'])) {
 						$text = $event['source']['roomId'];
 						break;
 					case "CheckOK":
+						$text = "OPT OK ,Thank you.";
 						$ch = curl_init();
 
 						// set URL and other appropriate options
@@ -139,7 +140,7 @@ if (!is_null($events['events'])) {
 
 						// close cURL resource, and free up system resources
 						curl_close($ch);
-						$text = "OK ,Thank you.";
+						break;
 					case "Group":
 						$text = $event['source']['groupId'];
 						break;
