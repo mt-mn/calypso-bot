@@ -1,7 +1,7 @@
 <html>
  <body>
 
-<?php echo $_POST["check"]; ?><br>
+<?php echo $_GET["check"]; ?><br>
 
  </body>
  </html> 
