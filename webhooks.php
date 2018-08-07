@@ -128,7 +128,10 @@ if (!is_null($events['events'])) {
 						$text = $event['source']['roomId'];
 						break;
 					case "CheckOK":
-						$text = "OPT OK ,Thank you.";
+					case "Checkok":
+					case "checkok":
+					case "เช็คแล้ว":
+						$text = "โอเค จะไปอัพเดพหน้าเว็บให้เว้ยเอ้ย !.";
 						$ch = curl_init();
 
 						// set URL and other appropriate options
