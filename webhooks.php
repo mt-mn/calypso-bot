@@ -144,6 +144,7 @@ if (!is_null($events['events'])) {
 						// close cURL resource, and free up system resources
 						curl_close($ch);
 						break;
+
 					case "Group":
 						$text = $event['source']['groupId'];
 						break;

@@ -8,6 +8,9 @@
 	  if ($check_status == "FAIL") {
 		  $put = pg_query($link, "UPDATE public.check_ok SET status = 'FAIL' where check_result = 'OPT';");
 	  }
+	  if ($check_status == "NORMAL") {
+		  $put = pg_query($link, "UPDATE public.check_ok SET status = 'NORMAL' where check_result = 'OPT';");
+	  }
 	  pg_query("COMMIT");
   }
   $result = pg_query($link, "SELECT status from public.check_ok where check_result = 'OPT';");
